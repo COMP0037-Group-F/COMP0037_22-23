@@ -11,7 +11,7 @@ import numpy as np
 
 from bandits.bandit import Bandit
 from bandits.bandit import BanditEnvironment
-from bandits.upper_confidence_bound_agent import UpperConfidenceBoundAgent
+from bandits.damped_epsilon_greedy_agent import DampedEpsilonGreedyAgent
 from bandits.performance_measures import compute_percentage_of_optimal_actions_selected
 from bandits.performance_measures import compute_regret
 
@@ -32,13 +32,13 @@ if __name__ == '__main__':
     environment.set_bandit(8, Bandit(0.5, 1))
     environment.set_bandit(9, Bandit(-0.5, 1))
 
-    number_of_steps = 10000
+    number_of_steps = 100000
 
-    # Q6b:
-    # Modify the value of c
-    c = 0
+    # Q5b:
+    # Change values to see what happens
+    epsilon = 0.01
 
-    agent = UpperConfidenceBoundAgent(environment, c)
+    agent = DampedEpsilonGreedyAgent(environment, epsilon)
 
     # Step-by-step store of rewards
     reward_history = np.zeros(number_of_steps)
@@ -55,10 +55,6 @@ if __name__ == '__main__':
     plt.plot(action_history)
     plt.xlabel('Sample number')
     plt.ylabel('Arm pulled')
-
-    # Q4a:
-    # Plot the % optimal actions
-    percentage_correct_actions = compute_percentage_of_optimal_actions_selected(environment, action_history)
 
     # Plot percentage correct action curves
     plt.figure(2)

@@ -3,8 +3,10 @@ Created on 14 Jan 2022
 
 @author: ucacsjj
 '''
+import random
 
 from .agent import Agent
+
 
 # This agent randomly picks action. It subclasses from Agent, and
 # inherits all the base class book keeping.
@@ -18,10 +20,8 @@ class RandomActionAgent(Agent):
     # remind myself of what the constructor is doing.
     def __init__(self, environment):
         super().__init__(environment)
-        
+
     # Q3a:
     # Choose a random action the agent will perform
     def _choose_action(self):
-        return 0
-
-        
+        return random.randint(0, self._number_of_bandits - 1)
