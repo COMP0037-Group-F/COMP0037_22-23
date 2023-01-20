@@ -8,8 +8,9 @@ occupancy_grid = OccupancyGrid("Breadth-First Example", 21, 21, 0.5)
 
 # Q3c:
 # Change to range(1, 20) for the simpler example
-for y in range(0, 20):
-    occupancy_grid.set_cell(11, y, 1)
+for y in range(0, 18):
+    occupancy_grid.set_cell(y, y, 1)
+    occupancy_grid.set_cell(y+1, y, 1)
 
 start = (0, 20)
 goal = (20, 0)

@@ -6,14 +6,16 @@ from grid_search.breadth_first_planner import BreadthFirstPlanner
 # Create the occupancy grid
 # Q1c:
 # Modify the occupancy grid size
-occupancy_grid = OccupancyGrid("Breadth First Search in Empty Space", 10, 10, 0.5)
+occupancy_grid = OccupancyGrid("Breadth First Search in Empty Space", 30, 30, 0.5)
 
 # Q1d:
 
 # Add obstacles to the occupancy grid. The last term is the probability
 # that a cell is occupied. In this module, we really only deal with the cases
 # where it's a 0 or a 1.
-#occupancy_grid.set_cell(7, 2, 1)
+for i in range(1, 5):
+    occupancy_grid.set_cell(i, 22, 1)
+    occupancy_grid.set_cell(i+1, 22, 1)
 
 # Create the planner object. This takes in the occupancy grid, which
 # specifies where the robot can go.
@@ -27,21 +29,21 @@ planner.update_graphics_each_iteration(True)
 
 # This is how to change the size of the window if it's too big. We only
 # set the height to ensure the aspect ratio is always computed properly.
-#planner.set_maximum_grid_drawer_window_height_in_pixels(200)
+# planner.set_maximum_grid_drawer_window_height_in_pixels(200)
 
 # Q1b:
 # Set the start and end values to the specified 
-start = (0, 0)
-goal = (9, 4)
+start = (1, 7)
+goal = (1, 27)
 
 # Run the planner to work out the path from the start to the goal
 planner.plan(start, goal)
-    
+
 search_grid_drawer = planner.search_grid_drawer()
-    
+
 # Pause
 search_grid_drawer.wait_for_key_press()
-    
+
 # Show the path
 planner.extract_path_to_goal()
 
@@ -51,4 +53,3 @@ search_grid_drawer.wait_for_key_press()
 # This how to take a screenshot of the search grid
 
 search_grid_drawer.save_screenshot('breadth_first_empty_space.pdf')
-
